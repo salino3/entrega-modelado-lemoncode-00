@@ -1,0 +1,53 @@
+[{
+  "_id": {
+    "$oid": "6494181d11928a2c63c96ae3"
+  },
+  "title": "React with Joe",
+  "videos": 10,
+  "theme": "React",
+  "authors": [
+    {
+      "id": {
+        "$oid": "6494192811928a2c63c96ae4"
+      },
+      "name": "Joe",
+      "surname": "Smith",
+      "biography": "My biography ......",
+      "courses": [
+        {
+          "id": {
+            "$oid": "6494199311928a2c63c96ae5"
+          },
+          "title": "React con Joe",
+          "description": "This is the course description"
+        }
+      ]
+    }
+  ],
+  "description": "This is the course description",
+  "lessons": [
+    {
+      "id": {
+        "$oid": "649419fe11928a2c63c96ae6"
+      },
+      "duration": 112,
+      "title": "Hooks",
+      "url": "https://nfnjkdsnknkjcdnuikfnknv",
+      "description": "Today we learn hooks",
+      "isPublic": true,
+      "date": {
+        "$timestamp": {
+          "t": 0,
+          "i": 0
+        }
+      },
+      "author": {
+        "id": {
+          "$oid": "64941b1611928a2c63c96ae7"
+        },
+        "name": "Joe",
+        "surname": "Smith"
+      }
+    }
+  ]
+}]
