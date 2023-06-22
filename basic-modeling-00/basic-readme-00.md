@@ -1,23 +1,23 @@
-## Data Structure - Tree Pattern
+# Data Structure - Tree Pattern
 
 This repository utilizes the Tree Pattern to organize and represent data in a hierarchical structure. The data is structured as a collection of JSON objects, each containing various properties and relationships.
 
-# Structure Overview
+## Structure Overview
 
 In this example the main structure consists of a course titled "React with Joe", which contains information such as the course title, number of videos, theme, and description. The course can also includes a set of lessons, with each lesson having properties like duration, title, URL, description, and if it is public or not. Lessons are associated with the author.
 
 
-# Image
+## Image
 
 ![image](./content/gallery/basic-modeling-00.png)
 
 
-# Link HTML
+## Link HTML
 
 http://127.0.0.1:5500/basic-modeling-00/content/index.html
 
 
-# Pattern Explanation
+## Pattern Explanation
 
 The data structure in this project follows the Tree Pattern, representing hierarchical relationships in the entities. The course serves as the root node, with authors and lessons as child nodes. This nested structure allows for organized and efficient data representation.
 
