@@ -10,7 +10,7 @@ The second table is 'subscribers', in this case the structure is easier, it's a 
 
 ## Image
 
-![image](./content/gallery/optional-modeling-01.png)
+![image](./content/gallery/optional-modelng-00.3.png)
 
 
 ## Link HTML

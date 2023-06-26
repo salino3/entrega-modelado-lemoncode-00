@@ -1,18 +1,63 @@
 [{
   "_id": {
-    "$oid": "64943cd811928a2c63c96af5"
+    "$oid": "6494181d11928a2c63c96ae3"
   },
-  "age": 23,
-  "email": "torres@gmail.com",
-  "name": "Fran",
-  "password": "***********",
-  "surname": "Torres",
-  "id_lessons": [
+  "title": "React with Joe",
+  "authors": [
     {
-      "$oid": "64943d5511928a2c63c96af7"
-    },
+      "id": {
+        "$oid": "6494192811928a2c63c96ae4"
+      },
+      "name": "Joe",
+      "surname": "Smith",
+      "biography": ""
+    }
+  ],
+  "description": "This is the course description",
+  "lessons": [
     {
-      "$oid": "64943d7311928a2c63c96af8"
+      "id": {
+        "$oid": "649419fe11928a2c63c96ae6"
+      },
+      "title": "Hooks",
+      "description": "Today we learn hooks",
+      "isPublic": true,
+      "date": {
+        "$timestamp": {
+          "t": 0,
+          "i": 0
+        }
+      },
+      "author": {
+        "id": {
+          "$oid": "64941b1611928a2c63c96ae7"
+        },
+        "name": "Joe",
+        "surname": "Smith"
+      },
+      "video": {
+        "id": {
+          "$oid": "6499909671766efeadaf1934"
+        },
+        "duration": 112,
+        "url": "https://nfnjkdsnknkjcdnuikfnksl"
+      }
+    }
+  ],
+  "category": [
+    {
+      "id": {
+        "$oid": "6499913d71766efeadaf1935"
+      },
+      "title": "title....",
+      "sections": [
+        {
+          "id": {
+            "$oid": "6499962d71766efeadaf1936"
+          },
+          "name": "Name Section..."
+        }
+      ]
     }
   ]
 }]
