@@ -1,0 +1,18 @@
+[{
+  "_id": {
+    "$oid": "64943cd811928a2c63c96af5"
+  },
+  "age": 23,
+  "email": "torres@gmail.com",
+  "name": "Fran",
+  "password": "***********",
+  "surname": "Torres",
+  "id_lessons": [
+    {
+      "$oid": "64943d5511928a2c63c96af7"
+    },
+    {
+      "$oid": "64943d7311928a2c63c96af8"
+    }
+  ]
+}]

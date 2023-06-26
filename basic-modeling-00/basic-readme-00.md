@@ -9,7 +9,7 @@ In this example the main structure consists of a course titled "React with Joe",
 
 ## Image
 
-![image](./content/gallery/basic-modeling-00.png)
+![image](./content/gallery/basic-modeling-00.2.png)
 
 
 ## Link HTML
