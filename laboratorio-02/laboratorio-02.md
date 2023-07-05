@@ -93,7 +93,24 @@ db.listingsAndReviews.find(
   - Sólo muestra: nombre, precio, camas, baños, rating y localidad.
 
 ```js
-// Pega aquí tu consulta
+db.listingsAndReviews.find(
+   {
+     $and: [
+       { price: { $lte: 50 } },
+       { "review_scores.review_scores_rating": { $gte: 88 } },
+     ],
+   },
+   {
+     _id: 0,
+     name: 1,
+     price: 1,
+     beds: 1,
+     bathrooms: 1,
+     "review_scores.review_scores_rating": 1,
+     "address.location": 1
+   }
+ );
+
 ```
 
 - También queremos que el huésped sea un superhost y que no tengamos que pagar depósito de seguridad
