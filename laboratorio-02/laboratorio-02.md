@@ -251,7 +251,7 @@ db.listingsAndReviews.aggregate([
       beds: 1,
       bathrooms: 1,
       price: 1,
-      amenities: 1
+      amenities: 1,
       "address.market": 1,
     },
   },
