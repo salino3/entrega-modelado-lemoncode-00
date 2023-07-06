@@ -16,7 +16,7 @@ En este base de datos puedes encontrar un montón de alojamientos y sus reviews,
 **Pregunta**. Si montaras un sitio real, ¿Qué posibles problemas pontenciales les ves a como está almacenada la información?
 
 ```md
-No veo ningun problema..
+ ...
 
 ```
 
@@ -29,7 +29,7 @@ Esta es la parte mínima que tendrás que entregar para superar este laboratorio
 - Saca en una consulta cuantos alojamientos hay en España.
 
 ```js
- db.listingsAndReviews.countDocuments();
+ db.listingsAndReviews.count({ "address.country": "Spain" });
 ```
 
 - Lista los 10 primeros:
@@ -94,10 +94,42 @@ db.listingsAndReviews.find(
 
 ```js
 db.listingsAndReviews.find(
+  {
+    $and: [
+      { price: { $lte: 50 } },
+      { "review_scores.review_scores_rating": { $gte: 88 } },
+      {
+        $or: [
+          { "address.market": "Barcelona" },
+          { "address.country": "Portugal" },
+        ],
+      },
+    ],
+  },
+  {
+    _id: 0,
+    name: 1,
+    price: 1,
+    beds: 1,
+    bathrooms: 1,
+    "review_scores.review_scores_rating": 1,
+    "address.location": 1
+  }
+);
+
+```
+
+- También queremos que el huésped sea un superhost y que no tengamos que pagar depósito de seguridad
+  - Sólo muestra: nombre, precio, camas, baños, rating, si el huésped es superhost, depósito de seguridad y localidad.
+
+```js
+db.listingsAndReviews.find(
    {
      $and: [
        { price: { $lte: 50 } },
        { "review_scores.review_scores_rating": { $gte: 88 } },
+       { "host.host_is_superhost": true },
+       { security_deposit: {$eq: 0}},
      ],
    },
    {
@@ -106,19 +138,12 @@ db.listingsAndReviews.find(
      price: 1,
      beds: 1,
      bathrooms: 1,
-     "review_scores.review_scores_rating": 1,
-     "address.location": 1
+     "address.location": 1,
+     "host.host_is_superhost": 1,
+     security_deposit: 1,
    }
  );
-
-```
-
-- También queremos que el huésped sea un superhost y que no tengamos que pagar depósito de seguridad
-  - Sólo muestra: nombre, precio, camas, baños, rating, si el huésped es superhost, depósito de seguridad y localidad.
-
-```js
-// Pega aquí tu consulta
-```
+ ```
 
 ### Agregaciones
 
@@ -128,13 +153,24 @@ db.listingsAndReviews.find(
   - Precio
 
 ```js
-// Pega aquí tu consulta
+ db.listingsAndReviews.find(
+  { "address.country": "Spain" },
+  {
+    name: 1, price: 1, "address.location": 1
+});
 ```
 
 - Queremos saber cuantos alojamientos hay disponibles por pais.
 
 ```js
-// Pega aquí tu consulta
+db.listingsAndReviews.aggregate([
+  {
+    $group: {
+      _id: "$address.country",
+      totalRooms: { $sum: "$bedrooms" },
+    },
+  },
+]);
 ```
 
 ## Opcional
@@ -142,19 +178,43 @@ db.listingsAndReviews.find(
 - Queremos saber el precio medio de alquiler de airbnb en España.
 
 ```js
-// Pega aquí tu consulta
+db.listingsAndReviews.aggregate([
+  {
+    $group: {
+      _id: null,
+      avgAmount: { $avg: "$price" },
+    },
+  },
+]);
 ```
 
 - ¿Y si quisieramos hacer como el anterior, pero sacarlo por paises?
 
 ```js
-// Pega aquí tu consulta
+ db.listingsAndReviews.aggregate([
+   {
+     $group: {
+       _id: "$address.country",
+       avgAmount: { $avg: "$price" },
+     },
+   },
+ ]);
 ```
 
 - Repite los mismos pasos pero agrupando también por numero de habitaciones.
 
 ```js
-// Pega aquí tu consulta
+ db.listingsAndReviews.aggregate([
+   {
+     $group: {
+       _id: {
+         country: "$address.country",
+         bedrooms: "$bedrooms",
+       },
+       avgAmount: { $avg: "$price" },
+     },
+   },
+ ]);
 ```
 
 ## Desafio
@@ -170,5 +230,30 @@ Queremos mostrar el top 5 de alojamientos más caros en España, con los siguent
 - Servicios, pero en vez de un array, un string con todos los servicios incluidos.
 
 ```js
-// Pega aquí tu consulta
+
+db.listingsAndReviews.aggregate([
+    {
+        $match: {"address.country": "Spain"}
+    },
+  {
+    $sort: {
+      price: -1,
+    },
+  },
+  {
+    $limit: 5,
+  },
+  {
+    $project: {
+      _id: 0,
+      name: 1,
+      bedrooms: 1,
+      beds: 1,
+      bathrooms: 1,
+      price: 1,
+      amenities: 1
+      "address.market": 1,
+    },
+  },
+]);
 ```
